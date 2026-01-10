@@ -1,0 +1,9 @@
+Signal,Original Terms,Optimized Terms,Reduction,Savings %
+RegWrite,5,3,2,40.0%
+RegDst,1,1,0,0.0%
+ALUSrc,4,3,1,25.0%
+MemRead,1,1,0,0.0%
+MemWrite,1,1,0,0.0%
+MemToReg,1,1,0,0.0%
+Branch,1,1,0,0.0%
+Jump,2,1,1,50.0%
