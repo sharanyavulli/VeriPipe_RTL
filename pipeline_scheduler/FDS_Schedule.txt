@@ -1,0 +1,48 @@
+============================================================
+FDS SCHEDULING RESULTS
+============================================================
+
+Signal                          Step    Resource
+------------------------------------------------------------
+Instruction_Decode                 0    Decoder
+Branch                             1    Decoder
+ImmSrc                             1    Decoder
+Jump                               1    Decoder
+MemRead                            1    Decoder
+MemToReg                           1    Decoder
+MemWrite                           1    Decoder
+RegDst                             1    Decoder
+RegWrite                           2    Decoder
+FwdA                               3    Comparator
+FwdB                               3    Comparator
+ALUSrc                             4    Decoder
+ALUOp                              5    Decoder
+Bubble                             5    Logic
+Stall                              5    Logic
+BranchZero                         6    Logic
+BranchTaken                        7    Logic
+FwdC                               7    Comparator
+IF_ID_Write                        7    Logic
+PCWrite                            7    Logic
+TargetAddrReady                    7    ?
+Flush_IF_ID                        8    Logic
+ID_EX_Flush                        8    Logic
+PC_src                             8    Mux
+
+============================================================
+CRITICAL PATH
+============================================================
+Instruction_Decode              Step 0
+RegWrite                        Step 2
+ALUOp                           Step 5
+ALUSrc                          Step 4
+MemToReg                        Step 1
+Flush_IF_ID                     Step 8
+FwdA                            Step 3
+FwdB                            Step 3
+ID_EX_Flush                     Step 8
+BranchZero                      Step 6
+BranchTaken                     Step 7
+PC_src                          Step 8
+
+Total critical path delay: 8 steps

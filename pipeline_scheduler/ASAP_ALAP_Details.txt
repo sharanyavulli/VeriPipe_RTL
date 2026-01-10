@@ -1,0 +1,83 @@
+============================================================
+ASAP SCHEDULING
+============================================================
+Instruction_Decode            : 0
+Branch                        : 1
+ImmSrc                        : 1
+Jump                          : 1
+MemRead                       : 1
+MemToReg                      : 1
+MemWrite                      : 1
+RegDst                        : 1
+RegWrite                      : 2
+Stall                         : 2
+Bubble                        : 3
+FwdA                          : 3
+FwdB                          : 3
+FwdC                          : 3
+ALUSrc                        : 4
+IF_ID_Write                   : 4
+PCWrite                       : 4
+ALUOp                         : 5
+BranchZero                    : 6
+TargetAddrReady               : 6
+BranchTaken                   : 7
+Flush_IF_ID                   : 8
+ID_EX_Flush                   : 8
+PC_src                        : 8
+
+============================================================
+ALAP SCHEDULING
+============================================================
+Instruction_Decode            : 0
+MemToReg                      : 1
+RegWrite                      : 2
+FwdA                          : 3
+FwdB                          : 3
+ImmSrc                        : 3
+RegDst                        : 3
+ALUSrc                        : 4
+MemRead                       : 4
+ALUOp                         : 5
+Branch                        : 5
+Stall                         : 5
+BranchZero                    : 6
+Bubble                        : 6
+BranchTaken                   : 7
+Jump                          : 7
+PCWrite                       : 7
+TargetAddrReady               : 7
+Flush_IF_ID                   : 8
+FwdC                          : 8
+ID_EX_Flush                   : 8
+IF_ID_Write                   : 8
+MemWrite                      : 8
+PC_src                        : 8
+
+============================================================
+SLACK ANALYSIS
+============================================================
+ALUOp                         : 0 [CRITICAL]
+ALUSrc                        : 0 [CRITICAL]
+BranchTaken                   : 0 [CRITICAL]
+BranchZero                    : 0 [CRITICAL]
+Flush_IF_ID                   : 0 [CRITICAL]
+FwdA                          : 0 [CRITICAL]
+FwdB                          : 0 [CRITICAL]
+ID_EX_Flush                   : 0 [CRITICAL]
+Instruction_Decode            : 0 [CRITICAL]
+MemToReg                      : 0 [CRITICAL]
+PC_src                        : 0 [CRITICAL]
+RegWrite                      : 0 [CRITICAL]
+TargetAddrReady               : 1
+ImmSrc                        : 2
+RegDst                        : 2
+Bubble                        : 3
+MemRead                       : 3
+PCWrite                       : 3
+Stall                         : 3
+Branch                        : 4
+IF_ID_Write                   : 4
+FwdC                          : 5
+Jump                          : 6
+MemWrite                      : 7
