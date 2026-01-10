@@ -1,0 +1,201 @@
+{
+  "modules": {
+    "InstructionDecoder": {
+      "type": "Combinational Decoder",
+      "stage": "IF/ID",
+      "function": "Extracts and decodes instruction fields (opcode, funct3, funct7)",
+      "inputs": [
+        "instruction[31:0]"
+      ],
+      "outputs": [
+        "opcode[6:0]",
+        "funct3[2:0]",
+        "funct7[6:0]",
+        "rs1[4:0]",
+        "rs2[4:0]",
+        "rd[4:0]"
+      ]
+    },
+    "ControlDecoder": {
+      "type": "Combinational Decoder",
+      "stage": "ID",
+      "function": "Generates primary control signals from opcode",
+      "inputs": [
+        "opcode[6:0]"
+      ],
+      "outputs": [
+        "RegWrite",
+        "RegDst",
+        "ImmSrc[1:0]",
+        "Branch",
+        "Jump"
+      ]
+    },
+    "MemoryController": {
+      "type": "Combinational Decoder",
+      "stage": "ID/MEM",
+      "function": "Controls memory access and writeback selection",
+      "inputs": [
+        "opcode[6:0]"
+      ],
+      "outputs": [
+        "MemRead",
+        "MemWrite",
+        "MemToReg"
+      ]
+    },
+    "ForwardingUnit": {
+      "type": "Comparator Array",
+      "stage": "ID/EX",
+      "function": "Detects data hazards and generates forwarding controls",
+      "inputs": [
+        "rs1[4:0]",
+        "rs2[4:0]",
+        "EX_rd[4:0]",
+        "MEM_rd[4:0]",
+        "EX_RegWrite",
+        "MEM_RegWrite"
+      ],
+      "outputs": [
+        "FwdA[1:0]",
+        "FwdB[1:0]",
+        "FwdC[1:0]"
+      ]
+    },
+    "ALUController": {
+      "type": "Combinational Decoder",
+      "stage": "EX",
+      "function": "Selects ALU operation and source operands",
+      "inputs": [
+        "opcode[6:0]",
+        "funct3[2:0]",
+        "funct7[5]",
+        "FwdA[1:0]",
+        "FwdB[1:0]"
+      ],
+      "outputs": [
+        "ALUOp[3:0]",
+        "ALUSrc"
+      ]
+    },
+    "HazardUnit": {
+      "type": "Comparator + Logic",
+      "stage": "ID",
+      "function": "Detects load-use hazards and generates stall signals",
+      "inputs": [
+        "EX_MemRead",
+        "EX_rd[4:0]",
+        "rs1[4:0]",
+        "rs2[4:0]"
+      ],
+      "outputs": [
+        "Bubble",
+        "PCWrite",
+        "IF_ID_Write"
+      ]
+    },
+    "BranchUnit": {
+      "type": "Comparator + Logic",
+      "stage": "EX",
+      "function": "Evaluates branch conditions and determines PC source",
+      "inputs": [
+        "Branch",
+        "Jump",
+        "ALU_Zero",
+        "ALU_result[31:0]"
+      ],
+      "outputs": [
+        "BranchComp",
+        "BranchTaken",
+        "PC_src"
+      ]
+    },
+    "FlushController": {
+      "type": "Combinational Logic",
+      "stage": "IF/ID/EX",
+      "function": "Generates pipeline flush signals for control hazards",
+      "inputs": [
+        "BranchTaken",
+        "Jump",
+        "Bubble"
+      ],
+      "outputs": [
+        "Flush_IF_ID",
+        "ID_EX_Flush"
+      ]
+    }
+  },
+  "signal_binding": {
+    "InstrDecode": "InstructionDecoder",
+    "RegWrite": "ControlDecoder",
+    "RegDst": "ControlDecoder",
+    "ImmSrc": "ControlDecoder",
+    "Branch": "ControlDecoder",
+    "Jump": "ControlDecoder",
+    "MemRead": "MemoryController",
+    "MemWrite": "MemoryController",
+    "MemToReg": "MemoryController",
+    "FwdA": "ForwardingUnit",
+    "FwdB": "ForwardingUnit",
+    "FwdC": "ForwardingUnit",
+    "ALUSrc": "ALUController",
+    "ALUOp": "ALUController",
+    "Bubble": "HazardUnit",
+    "PCWrite": "HazardUnit",
+    "IF_ID_Write": "HazardUnit",
+    "BranchComp": "BranchUnit",
+    "BranchTaken": "BranchUnit",
+    "PC_src": "BranchUnit",
+    "Flush_IF_ID": "FlushController",
+    "ID_EX_Flush": "FlushController"
+  },
+  "stage_signals": {
+    "IF": [
+      "InstrDecode",
+      "PCWrite",
+      "IF_ID_Write",
+      "Flush_IF_ID",
+      "PC_src"
+    ],
+    "ID": [
+      "RegWrite",
+      "RegDst",
+      "ImmSrc",
+      "Branch",
+      "Jump",
+      "Bubble",
+      "MemRead",
+      "MemWrite",
+      "MemToReg"
+    ],
+    "EX": [
+      "FwdA",
+      "FwdB",
+      "ALUSrc",
+      "ALUOp",
+      "BranchComp",
+      "BranchTaken",
+      "ID_EX_Flush"
+    ],
+    "MEM": [
+      "FwdC"
+    ],
+    "WB": [
+      "MemToReg"
+    ]
+  },
+  "statistics": {
+    "total_modules": 8,
+    "total_signals": 22,
+    "signals_per_module": {
+      "InstructionDecoder": 1,
+      "ControlDecoder": 5,
+      "MemoryController": 3,
+      "ForwardingUnit": 3,
+      "ALUController": 2,
+      "HazardUnit": 3,
+      "BranchUnit": 3,
+      "FlushController": 2
+    }
+  }
+}

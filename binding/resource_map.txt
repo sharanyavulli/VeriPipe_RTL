@@ -1,0 +1,37 @@
+MIPS Pipeline Resource Map
+==========================
+
+{
+  "PC": "PC_Unit",
+  "PCSrcMUX": "PC_MUX",
+  "PCWrite": "HazardUnit / MergeLogic",
+  "IF_ID": "PipelineLatch_IF_ID",
+  "IF_ID_Write": "HazardUnit",
+  "Stall": "HazardUnit",
+  "MainControl": {
+    "RegWrite_cand": "MainControl",
+    "RegDst_cand": "MainControl",
+    "ALUSrc_cand": "MainControl",
+    "ALUOp_cand": "MainControl",
+    "MemRead_cand": "MainControl",
+    "MemWrite_cand": "MainControl",
+    "MemToReg_cand": "MainControl",
+    "Branch_cand": "MainControl"
+  },
+  "ID_EX": "PipelineLatch_ID_EX",
+  "RegDstMUX": "RegDst_Mux",
+  "ALUSrcMUX": "ALUSrc_Mux",
+  "ALUControl": "ALU_Control",
+  "ALU": "ALU",
+  "PCTarget": "BranchAdder",
+  "PCSrcMux": "PC_MUX",
+  "ForwardUnit": "ForwardUnit",
+  "EX_MEM": "PipelineLatch_EX_MEM",
+  "DataMemory": "DataMemory",
+  "FwdC_MUX": "FwdC_Mux",
+  "MEM_WB": "PipelineLatch_MEM_WB",
+  "WBMux": "WB_Mux",
+  "RegFile_Write": "RegFile_WritePort",
+  "HazardUnit": "HazardUnit",
+  "ForwardingUnit": "ForwardUnit"
+}

@@ -1,0 +1,9 @@
+Module,Type,Stage,Signals,Function
+ALUController,Combinational Decoder,EX,2,Selects ALU operation and source operands
+BranchUnit,Comparator + Logic,EX,3,Evaluates branch conditions and determines PC source
+ControlDecoder,Combinational Decoder,ID,5,Generates primary control signals from opcode
+FlushController,Combinational Logic,IF/ID/EX,2,Generates pipeline flush signals for control hazards
+ForwardingUnit,Comparator Array,ID/EX,3,Detects data hazards and generates forwarding controls
+HazardUnit,Comparator + Logic,ID,3,Detects load-use hazards and generates stall signals
+InstructionDecoder,Combinational Decoder,IF/ID,1,"Extracts and decodes instruction fields (opcode, funct3, funct7)"
+MemoryController,Combinational Decoder,ID/MEM,3,Controls memory access and writeback selection
