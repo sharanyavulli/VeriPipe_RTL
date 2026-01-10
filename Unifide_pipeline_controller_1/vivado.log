@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Nov 18 13:42:33 2025
+# Process ID: 34884
+# Current directory: C:/Users/shara/RTL/Unifide_pipeline_controller_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent38564 C:\Users\shara\RTL\Unifide_pipeline_controller_1\Unifide_pipeline_controller_1.xpr
+# Log file: C:/Users/shara/RTL/Unifide_pipeline_controller_1/vivado.log
+# Journal file: C:/Users/shara/RTL/Unifide_pipeline_controller_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/shara/RTL/Unifide_pipeline_controller_1/Unifide_pipeline_controller_1.xpr

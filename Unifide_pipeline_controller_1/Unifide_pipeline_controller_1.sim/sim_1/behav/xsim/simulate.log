@@ -1,0 +1,208 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+
+
+================================================================================
+        OPTIMIZED PIPELINE CONTROLLER TESTBENCH
+================================================================================
+Starting comprehensive verification...
+
+
+========================================
+TEST 1:                                                                                                                                                                               R-type ADD: ADD r4, r6, r3
+========================================
+  Expected Outputs:
+    RegWrite=1, RegDst=01, ALUSrc=0, MemRead=0, MemWrite=0
+    Branch=0, Jump=0, ALUOp=010
+  Actual Outputs:
+    ?                                                                                             RegWrite = 1 (PASS)
+    ?                                                                                               RegDst = 01 (PASS)
+    ?                                                                                               ALUSrc = 0 (PASS)
+    ?                                                                                              MemRead = 0 (PASS)
+    ?                                                                                             MemWrite = 0 (PASS)
+    ?                                                                                               Branch = 0 (PASS)
+    ?                                                                                                 Jump = 0 (PASS)
+    ?                                                                                                ALUOp = 010 (PASS)
+
+========================================
+TEST 2:                                                                                                                                                                               R-type SUB: SUB r5, r7, r2
+========================================
+  Expected: RegWrite=1, ALUOp=010 (R-type uses funct field)
+    ?                                                                                             RegWrite = 1 (PASS)
+    ?                                                                                               RegDst = 01 (PASS)
+    ?                                                                                                ALUOp = 010 (PASS)
+
+========================================
+TEST 3:                                                                                                                                                                                  Load Word: LW r5, 4(r6)
+========================================
+  Expected Outputs:
+    RegWrite=1, RegDst=00, ALUSrc=1, MemRead=1, MemWrite=0
+    MemToReg=01, ImmSrc=00, ALUOp=000 (ADD for address calc)
+    ?                                                                                             RegWrite = 1 (PASS)
+    ?                                                                                               RegDst = 00 (PASS)
+    ?                                                                                               ALUSrc = 1 (PASS)
+    ?                                                                                              MemRead = 1 (PASS)
+    ?                                                                                             MemWrite = 0 (PASS)
+    ?                                                                                             MemToReg = 01 (PASS)
+    ?                                                                                               ImmSrc = 00 (PASS)
+    ?                                                                                                ALUOp = 000 (PASS)
+
+========================================
+TEST 4:                                                                                                                                                                                 Store Word: SW r5, 8(r6)
+========================================
+  Expected Outputs:
+    RegWrite=0, ALUSrc=1, MemRead=0, MemWrite=1
+    ImmSrc=00, ALUOp=000
+    ?                                                                                             RegWrite = 0 (PASS)
+    ?                                                                                               ALUSrc = 1 (PASS)
+    ?                                                                                              MemRead = 0 (PASS)
+    ?                                                                                             MemWrite = 1 (PASS)
+    ?                                                                                               ImmSrc = 00 (PASS)
+    ?                                                                                                ALUOp = 000 (PASS)
+
+========================================
+TEST 5:                                                                                                                                                                 Branch Equal: BEQ r6, r5, offset (TAKEN)
+========================================
+  Expected Outputs:
+    Branch=1, BranchZero=1, BranchTaken=1
+    Flush_IF_ID=1, ID_EX_Flush=1, PC_src=01
+    ImmSrc=10, ALUOp=001 (SUB for comparison)
+    ?                                                                                               Branch = 1 (PASS)
+    ?                                                                                           BranchZero = 1 (PASS)
+    ?                                                                                          BranchTaken = 1 (PASS)
+    ?                                                                                          Flush_IF_ID = 1 (PASS)
+    ?                                                                                          ID_EX_Flush = 1 (PASS)
+    ?                                                                                               PC_src = 01 (PASS)
+    ?                                                                                               ImmSrc = 10 (PASS)
+    ?                                                                                                ALUOp = 001 (PASS)
+
+========================================
+TEST 6:                                                                                                                                                             Branch Equal: BEQ r6, r5, offset (NOT TAKEN)
+========================================
+  Expected Outputs:
+    Branch=1, BranchZero=0, BranchTaken=0
+    Flush_IF_ID=0, PC_src=00
+    ?                                                                                               Branch = 1 (PASS)
+    ?                                                                                           BranchZero = 0 (PASS)
+    ?                                                                                          BranchTaken = 0 (PASS)
+    ?                                                                                          Flush_IF_ID = 0 (PASS)
+    ?                                                                                               PC_src = 00 (PASS)
+
+========================================
+TEST 7:                                                                                                                                                             Branch Not Equal: BNE r6, r5, offset (TAKEN)
+========================================
+  Expected Outputs:
+    Branch=1, BranchZero=1, BranchTaken=1
+    ?                                                                                               Branch = 1 (PASS)
+    ?                                                                                           BranchZero = 1 (PASS)
+    ?                                                                                          BranchTaken = 1 (PASS)
+
+========================================
+TEST 8:                                                                                                                                                                                           Jump: J target
+========================================
+  Expected Outputs:
+    Jump=1, BranchTaken=1, RegWrite=0
+    Flush_IF_ID=1, PC_src=10, ImmSrc=11
+    ?                                                                                                 Jump = 1 (PASS)
+    ?                                                                                          BranchTaken = 1 (PASS)
+    ?                                                                                             RegWrite = 0 (PASS)
+    ?                                                                                          Flush_IF_ID = 1 (PASS)
+    ?                                                                                               PC_src = 10 (PASS)
+    ?                                                                                               ImmSrc = 11 (PASS)
+
+========================================
+TEST 9:                                                                                                                                                                                Jump and Link: JAL target
+========================================
+  Expected Outputs:
+    Jump=1, RegWrite=1, RegDst=10 (r31)
+    MemToReg=10 (PC+4), ImmSrc=11
+    ?                                                                                                 Jump = 1 (PASS)
+    ?                                                                                             RegWrite = 1 (PASS)
+    ?                                                                                               RegDst = 10 (PASS)
+    ?                                                                                             MemToReg = 10 (PASS)
+    ?                                                                                               ImmSrc = 11 (PASS)
+
+========================================
+TEST 10:                                                                                                                                                                           Add Immediate: ADDI r5, r6, 10
+========================================
+  Expected Outputs:
+    RegWrite=1, ALUSrc=1, RegDst=00
+    ImmSrc=00, ALUOp=000
+    ?                                                                                             RegWrite = 1 (PASS)
+    ?                                                                                               ALUSrc = 1 (PASS)
+    ?                                                                                               RegDst = 00 (PASS)
+    ?                                                                                               ImmSrc = 00 (PASS)
+    ?                                                                                                ALUOp = 000 (PASS)
+
+========================================
+TEST 11:                                                                                                                                                                         AND Immediate: ANDI r5, r6, 0xFF
+========================================
+  Expected Outputs:
+    RegWrite=1, ALUSrc=1, ImmSrc=01 (zero-extend)
+    ALUOp=011 (AND)
+    ?                                                                                             RegWrite = 1 (PASS)
+    ?                                                                                               ALUSrc = 1 (PASS)
+    ?                                                                                               ImmSrc = 01 (PASS)
+    ?                                                                                                ALUOp = 011 (PASS)
+
+========================================
+TEST 12:                                                                                                                                                                            EX-to-EX Forwarding: ForwardA
+========================================
+  Expected Outputs:
+    ForwardA=10 (forward from EX)
+    ForwardB=00 (no forwarding for r3)
+    ?                                                                                             ForwardA = 10 (PASS)
+    ?                                                                                             ForwardB = 00 (PASS)
+
+========================================
+TEST 13:                                                                                                                                                                           MEM-to-EX Forwarding: ForwardA
+========================================
+  Expected Outputs:
+    ForwardA=01 (forward from MEM)
+    ForwardB=00
+    ?                                                                                             ForwardA = 01 (PASS)
+    ?                                                                                             ForwardB = 00 (PASS)
+
+========================================
+TEST 14:                                                                                                                                                                            EX-to-EX Forwarding: ForwardB
+========================================
+  Expected Outputs:
+    ForwardA=00, ForwardB=10 (forward from EX)
+    ?                                                                                             ForwardA = 00 (PASS)
+    ?                                                                                             ForwardB = 10 (PASS)
+
+========================================
+TEST 15:                                                                                                                                                                          Load-Use Hazard: Stall Pipeline
+========================================
+  Expected Outputs:
+    Stall=1, Bubble=1 (load-use hazard detected)
+    PCWrite=0, IF_ID_Write=0 (freeze pipeline)
+    ID_EX_Flush=1 (insert bubble)
+    ?                                                                                                Stall = 1 (PASS)
+    ?                                                                                               Bubble = 1 (PASS)
+    ?                                                                                              PCWrite = 0 (PASS)
+    ?                                                                                          IF_ID_Write = 0 (PASS)
+    ?                                                                                          ID_EX_Flush = 1 (PASS)
+
+========================================
+TEST 16:                                                                                                                                                                          No Hazard: Normal Pipeline Flow
+========================================
+  Expected Outputs:
+    Stall=0, Bubble=0 (no hazard)
+    PCWrite=1, IF_ID_Write=1 (pipeline advancing)
+    ForwardA=00, ForwardB=00 (no forwarding needed)
+    ?                                                                                                Stall = 0 (PASS)
+    ?                                                                                               Bubble = 0 (PASS)
+    ?                                                                                              PCWrite = 1 (PASS)
+    ?                                                                                          IF_ID_Write = 1 (PASS)
+    ?                                                                                             ForwardA = 00 (PASS)
+    ?                                                                                             ForwardB = 00 (PASS)
+
+========================================
+TEST 17:                                                                                                                                                                   Branch Comparator Forwarding: ForwardC
+========================================
+  Expected Outputs:
+    ForwardC=10 (forward to comparator from EX)
+    Branch=1
+    ?                                                                                             ForwardC = 10 (PASS)
+    ?                                     

@@ -1,0 +1,7 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+C:/Users/shara/RTL/Unifide_pipeline_controller_1/Unifide_pipeline_controller_1.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,
+C:/Users/shara/RTL/Unifide_pipeline_controller_1/Unifide_pipeline_controller_1.srcs/sim_1/new/test_bench.v,1763428226,verilog,,,,tb_pipeline_controller,,,,,,,,
+C:/Users/shara/RTL/Unifide_pipeline_controller_1/Unifide_pipeline_controller_1.srcs/sources_1/new/pipeline_control.v,1763428158,verilog,,C:/Users/shara/RTL/Unifide_pipeline_controller_1/Unifide_pipeline_controller_1.srcs/sim_1/new/test_bench.v,,pipeline_controller,,,,,,,,
